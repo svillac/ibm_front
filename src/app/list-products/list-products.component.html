@@ -1,0 +1,46 @@
+<ol _ngcontent-c4="" _ngcontent-c6="" class="breadcrumb">
+  <li _ngcontent-c4="" _ngcontent-c6="" class="breadcrumb-item"><a _ngcontent-c4="" _ngcontent-c6="" href="/list-client"
+      ng-reflect-router-link="/list-client" routerlink="/list-client">Listar Clientes</a></li>
+  <li _ngcontent-c4="" _ngcontent-c6="" class="breadcrumb-item active">Listar Tarjetas</li>
+  <li _ngcontent-c4="" _ngcontent-c6="" class="breadcrumb-item active">Listar Productos</li>
+</ol>
+<div *ngIf="card.products.length == 0" class="alert alert-warning alert-dismissible fade show" role="alert">
+  <strong>No hay datos disponibles!</strong> En este momento no hay tarjetas registrados.
+</div>
+
+<div class="card mb-3" *ngIf="card.products.length > 0">
+  <div class="card-header">
+    <i class="fa fa-list" aria-hidden="true"></i>
+    Productos comprados por el cliente: {{client.name}} y cargados en la tarjeta: {{card.numberCard}}</div>
+  <div class="card-body">
+    <div class="table-responsive">
+      <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+        <thead>
+          <tr>
+            <th>Descripcion</th>
+            <th>Fecha de compra</th>
+            <th>Precio</th>
+            <th>Editar</th>
+            <th>Borrar</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+          <tr *ngFor="let product of card.products">
+            <td>{{product.description}}</td>
+            <td>{{product.sellerDate}}</td>
+            <td>{{product.amount}}</td>
+            <td class="centrar editar" (click)="editProduct(product)">
+              <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+            </td>
+            <td class="centrar delete" (click)="deletePoduct(product)">
+              <i class="fa fa-times fa-3" aria-hidden="true"></i>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<button type="button" class="btn btn-primary" routerLink="/create-product">Crear Producto</button>

@@ -1,0 +1,46 @@
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">
+    <a href="#" routerLink="/list-client">Listar Clientes</a>
+  </li>
+  <li class="breadcrumb-item active">Editar tarjeta</li>
+</ol>
+<form [formGroup]="formCard" (ngSubmit)="addCard()" novalidate>
+  <div class="form-group row">
+    <label for="example-text-input" class="col-2 col-form-label">Numero de Tarjeta</label>
+    <div class="col-10">
+      <input formControlName="numberCard" [(ngModel)]="processCard.numberCard" class="form-control" >
+      <div *ngIf="formCard.get('numberCard').errors && formCard.get('numberCard').dirty" class="invalid-feedback mostrar">
+        <span class="red" *ngIf="formCard.get('numberCard').hasError('required')">* El campo debe estar lleno</span>
+        <span class="red" *ngIf="formCard.get('numberCard').hasError('maxlength')">* El tamaño no es el adecuado</span>
+      </div>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="example-search-input" class="col-2 col-form-label" maxlength="100">CSV: </label>
+    <div class="col-10">
+      <input formControlName="csv" [(ngModel)]="processCard.csv" class="form-control" type="text">
+      <div *ngIf="formCard.get('csv').errors && formCard.get('csv').dirty" class="invalid-feedback mostrar">
+        <span class="red" *ngIf="formCard.get('csv').hasError('required')">* El campo debe estar lleno</span>
+        <span class="red" *ngIf="formCard.get('csv').hasError('maxlength')">* El tamaño no es el adecuado</span>
+      </div>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="example-email-input" class="col-2 col-form-label" maxlength="30">Tipo</label>
+    <div class="col-10">
+      <input formControlName="cardType" [(ngModel)]="processCard.cardType" class="form-control" type="text"
+        id="example-email-input">
+      <div *ngIf="formCard.get('cardType').errors && formCard.get('cardType').dirty" class="invalid-feedback mostrar">
+        <span class="red" *ngIf="formCard.get('cardType').hasError('required')">* El campo debe estar lleno</span>
+        <span class="red" *ngIf="formCard.get('cardType').hasError('maxlength')">* El tamaño no es el adecuado</span>
+      </div>
+    </div>
+  </div>
+
+  <button [disabled]="formCard.get('numberCard').hasError('required')
+                        || formCard.get('csv').hasError('required')
+                        || formCard.get('cardType').hasError('required')" type="submit"
+    class="btn btn-primary">Editar</button>
+
+
+</form>

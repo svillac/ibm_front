@@ -1,0 +1,56 @@
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">
+      <a href="#" routerLink="/list-client">Listar Clientes</a>
+    </li>
+    <li class="breadcrumb-item active">Crear Cliente</li>
+  </ol>
+  <form  [formGroup]="formClient" (ngSubmit)="editClient()" novalidate>
+      <div class="form-group row">
+          <label for="example-text-input" class="col-2 col-form-label">Nombre</label>
+          <div class="col-10">
+            <input formControlName="name" [(ngModel)]="proccessClient.name" class="form-control" type="text" id="example-text-input" maxlength="50">
+            <div *ngIf="formClient.get('name').errors && formClient.get('name').dirty" class="invalid-feedback mostrar"> 
+              <span class="red" *ngIf="formClient.get('name').hasError('required')">* El campo debe estar lleno</span>
+              <span class="red" *ngIf="formClient.get('name').hasError('maxlength')">* El tamaño no es el adecuado</span>
+            </div>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="example-search-input" class="col-2 col-form-label" maxlength="100">Direccion: </label>
+          <div class="col-10">
+            <input  formControlName="dir" [(ngModel)]="proccessClient.dir"  class="form-control" type="text" >
+            <div *ngIf="formClient.get('dir').errors && formClient.get('dir').dirty" class="invalid-feedback mostrar"> 
+              <span class="red" *ngIf="formClient.get('dir').hasError('required')">* El campo debe estar lleno</span>
+              <span class="red" *ngIf="formClient.get('dir').hasError('maxlength')">* El tamaño no es el adecuado</span>
+            </div>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="example-email-input" class="col-2 col-form-label" maxlength="30">Ciudad</label>
+          <div class="col-10">
+            <input formControlName="city" [(ngModel)]="proccessClient.city"  class="form-control" type="text" id="example-email-input">
+            <div *ngIf="formClient.get('city').errors && formClient.get('city').dirty" class="invalid-feedback mostrar"> 
+              <span class="red" *ngIf="formClient.get('city').hasError('required')">* El campo debe estar lleno</span>
+              <span class="red" *ngIf="formClient.get('city').hasError('maxlength')">* El tamaño no es el adecuado</span>
+            </div>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="example-email-input" class="col-2 col-form-label" maxlength="20">Telefono</label>
+          <div class="col-10">
+            <input formControlName="tel" [(ngModel)]="proccessClient.tel"  class="form-control" type="text" id="example-email-input">
+            <div *ngIf="formClient.get('tel').errors && formClient.get('tel').dirty" class="invalid-feedback mostrar"> 
+              <span class="red" *ngIf="formClient.get('tel').hasError('required')">* El campo debe estar lleno</span>
+              <span class="red" *ngIf="formClient.get('tel').hasError('maxlength')">* El tamaño no es el adecuado</span>
+            </div>
+          </div>
+        </div>
+  
+    <button  [disabled]="formClient.get('name').hasError('required')
+                        || formClient.get('tel').hasError('required')
+                        || formClient.get('dir').hasError('required')
+                        || formClient.get('city').hasError('required')" type="submit" class="btn btn-primary">Editar</button>
+  
+  
+  </form>
+  

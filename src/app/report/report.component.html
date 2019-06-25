@@ -1,0 +1,33 @@
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">
+      <a href="#" routerLink="/report">Reporte</a>
+    </li>
+  </ol>
+  <form  [formGroup]="formReport" (ngSubmit)="createReport()" novalidate>
+      <div class="form-group row">
+          <label for="example-text-input" class="col-2 col-form-label">Fecha de Inicio</label>
+          <div class="col-10">
+            <input formControlName="initDate" [(ngModel)]="initDate" class="form-control" type="date" id="example-text-input" maxlength="50">
+            <div *ngIf="formReport.get('initDate').errors && formReport.get('initDate').dirty" class="invalid-feedback mostrar"> 
+              <span class="red" *ngIf="formReport.get('initDate').hasError('required')">* El campo debe estar lleno</span>
+              <span class="red" *ngIf="formReport.get('initDate').hasError('maxlength')">* El tamaño no es el adecuado</span>
+            </div>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="example-search-input" class="col-2 col-form-label" maxlength="100">Fecha de Fin: </label>
+          <div class="col-10">
+            <input  formControlName="finalDate" [(ngModel)]="finalDate"  class="form-control" type="date" >
+            <div *ngIf="formReport.get('finalDate').errors && formReport.get('finalDate').dirty" class="invalid-feedback mostrar"> 
+              <span class="red" *ngIf="formReport.get('finalDate').hasError('required')">* El campo debe estar lleno</span>
+              <span class="red" *ngIf="formReport.get('finalDate').hasError('maxlength')">* El tamaño no es el adecuado</span>
+            </div>
+          </div>
+        </div>
+  
+    <button  [disabled]="formReport.get('initDate').hasError('required')
+                        || formReport.get('finalDate').hasError('required')" type="submit" class="btn btn-primary">Editar</button>
+  
+  
+  </form>
+  

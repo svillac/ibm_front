@@ -1,0 +1,51 @@
+<div class="alert alert-warning alert-dismissible fade show" role="alert" *ngIf="clientes.length == 0">
+  <strong>No hay datos disponibles!</strong> En este momento no hay clientes registrados.
+</div>
+
+<ol class="breadcrumb" *ngIf="clientes.length > 0">
+  <li class="breadcrumb-item">
+    <a href="index.html">Listar Clientes</a>
+  </li>
+</ol>
+<!-- DataTables Example -->
+<div class="card mb-3" *ngIf="clientes.length > 0">
+  <div class="card-header">
+    <i class="fa fa-list" aria-hidden="true"></i>
+    Clientes</div>
+  <div class="card-body">
+    <div class="table-responsive">
+      <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Direccion</th>
+            <th>Ciudad</th>
+            <th>Telefono</th>
+            <th>Tarjetas</th>
+            <th>Editar</th>
+            <th>Eliminar</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let client of clientes">
+            <td>{{client.name}}</td>
+            <td>{{client.dir}}</td>
+            <td>{{client.city}}</td>
+            <td>{{client.tel}}</td>
+            <td class="centrar" (click)="showCards(client)">
+              <i class="fa fa-credit-card-alt" aria-hidden="true"></i>
+            </td>
+            <td class="centrar editar" (click)="editClient(client.clientId)">
+              <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+            </td>
+            <td class="centrar delete" (click)="deleteClient(client.clientId)">
+              <i class="fa fa-times fa-3" aria-hidden="true"></i>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<button type="button" class="btn btn-primary" routerLink="/create-client">Crear cliente</button>

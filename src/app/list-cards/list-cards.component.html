@@ -1,0 +1,48 @@
+<ol _ngcontent-c4="" _ngcontent-c6="" class="breadcrumb">
+  <li _ngcontent-c4="" _ngcontent-c6="" class="breadcrumb-item"><a _ngcontent-c4="" _ngcontent-c6="" href="/list-client"
+      ng-reflect-router-link="/list-client" routerlink="/list-client">Listar Clientes</a></li>
+  <li _ngcontent-c4="" _ngcontent-c6="" class="breadcrumb-item active">Listar Tarjetas</li>
+</ol>
+<div *ngIf="client.cards.length == 0" class="alert alert-warning alert-dismissible fade show" role="alert">
+  <strong>No hay datos disponibles!</strong> En este momento no hay tarjetas registrados.
+</div>
+
+<div class="card mb-3" *ngIf="client.cards.length > 0">
+  <div class="card-header">
+    <i class="fa fa-list" aria-hidden="true"></i>
+    Listado de tarjetas del cliente: {{client.name}}</div>
+  <div class="card-body">
+    <div class="table-responsive">
+      <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+        <thead>
+          <tr>
+            <th>Numero de tarjeta</th>
+            <th>csv</th>
+            <th>tipo de tarjeta</th>
+            <th>Historial</th>
+            <th>Editar</th>
+            <th>Borrar</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let tarjeta of client.cards">
+            <td>{{tarjeta.numberCard}}</td>
+            <td>{{tarjeta.csv}}</td>
+            <td>{{tarjeta.cardType}}</td>
+            <td class="centrar" (click)="showHistory(tarjeta)">
+              <i class="fa fa-history" aria-hidden="true"></i>
+            </td>
+            <td class="centrar editar" (click)="editCard(tarjeta)">
+              <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+            </td>
+            <td class="centrar delete" (click)="deleteCard(tarjeta)">
+              <i class="fa fa-times fa-3" aria-hidden="true"></i>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<button type="button" class="btn btn-primary" routerLink="/create-cards">Crear Tarjeta</button>

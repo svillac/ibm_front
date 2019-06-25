@@ -1,0 +1,46 @@
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">
+      <a href="#" routerLink="/list-client">Listar Clientes</a>
+    </li>
+    <li class="breadcrumb-item active">Tarjetas</li>
+    <li class="breadcrumb-item active">Crear Producto</li>
+  </ol>
+  <form  [formGroup]="formProduct" (ngSubmit)="addClient()" novalidate>
+      <div class="form-group row">
+          <label for="example-text-input" class="col-2 col-form-label">Descripcion</label>
+          <div class="col-10">
+            <input formControlName="description" [(ngModel)]="processProduct.description" class="form-control" type="text" id="example-text-input">
+            <div *ngIf="formProduct.get('description').errors && formProduct.get('description ').dirty" class="invalid-feedback mostrar"> 
+              <span class="red" *ngIf="formProduct.get('description').hasError('required')">* El campo debe estar lleno</span>
+              <span class="red" *ngIf="formProduct.get('description').hasError('maxlength')">* El tamaño no es el adecuado</span>
+            </div>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="example-search-input" class="col-2 col-form-label" maxlength="100">Decha de compra: </label>
+          <div class="col-10">
+            <input  formControlName="sellerDate" [(ngModel)]="processProduct.sellerDate"  class="form-control" type="date" >
+            <div *ngIf="formProduct.get('sellerDate').errors && formProduct.get('sellerDate').dirty" class="invalid-feedback mostrar"> 
+              <span class="red" *ngIf="formProduct.get('sellerDate').hasError('required')">* El campo debe estar lleno</span>
+              <span class="red" *ngIf="formProduct.get('sellerDate').hasError('maxlength')">* El tamaño no es el adecuado</span>
+            </div>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="example-email-input" class="col-2 col-form-label" maxlength="30">Precio</label>
+          <div class="col-10">
+            <input formControlName="amount" [(ngModel)]="processProduct.amount"  class="form-control" type="text" id="example-email-input">
+            <div *ngIf="formProduct.get('amount').errors && formProduct.get('amount').dirty" class="invalid-feedback mostrar"> 
+              <span class="red" *ngIf="formProduct.get('amount').hasError('required')">* El campo debe estar lleno</span>
+              <span class="red" *ngIf="formProduct.get('amount').hasError('maxlength')">* El tamaño no es el adecuado</span>
+            </div>
+          </div>
+        </div>
+  
+    <button  [disabled]="formProduct.get('description').hasError('required')
+                        || formProduct.get('sellerDate').hasError('required')
+                        || formProduct.get('amount').hasError('required')" type="submit" class="btn btn-primary">Crear</button>
+  
+  
+  </form>
+  
